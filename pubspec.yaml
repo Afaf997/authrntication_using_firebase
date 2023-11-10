@@ -8,14 +8,15 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.6
-  firebase_core: ^2.21.0
   firebase_auth: ^4.12.1
+  firebase_core: ^2.21.0
   google_fonts: ^6.1.0
   liquid_swipe: ^3.1.0
   smooth_page_indicator: ^1.1.0
   flutter_otp_text_field: ^1.1.1
   flutter: 
     sdk: flutter
+  line_awesome_flutter: ^2.0.0
 
 dev_dependencies: 
   flutter_lints: 3.0.1
@@ -28,16 +29,13 @@ flutter:
   assets:
     - assets/img/fbb.jpg
     - assets/img/google.webp
-    - assets/img/image-1.avif
-    - assets/img/images-2.jpg
     - assets/img/profile.avif
     - assets/img/by.jpg
-    - assets/img/wy.jpg
     - assets/img/sn.jpg
     - assets/img/sn1.jpg
     - assets/img/sn2.jpg
     - assets/img/signup.jpg
-    - assets/img/t.svg.webp
+    - assets/img/tt.png
 
 
 
