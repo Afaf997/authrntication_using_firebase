@@ -8,7 +8,7 @@ class HomeBinding extends Bindings {
     // Get.lazyPut<AuthController>(
     //   () => AuthController(),
     // );
-    //  Get.put(AuthController());
+     Get.put(AuthController());
 
   }
 }
