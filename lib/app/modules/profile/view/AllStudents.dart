@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -62,8 +63,8 @@ class AllstudentDetails extends StatelessWidget {
             child: SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.all(20),
-                child: Obx(
-                  () => Column(
+                child: Obx(()
+                   => Column(
                     children: List.generate(
                       studentController.students.length,
                       (index) => Column(
@@ -76,8 +77,9 @@ class AllstudentDetails extends StatelessWidget {
                                   backgroundColor: Colors.white,
                                   icon: Icons.delete,
                                   label: "Delete",
-                                  onPressed: (context) {
-                                    studentController.students.removeAt(index);
+                                  onPressed: (context) async{
+                                  await studentController.deleteStudent(studentController.students[index]['id']);
+                                   
                                   },
                                 ),
                               ],

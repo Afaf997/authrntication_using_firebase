@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:taskappfirebase/app/modules/profile/controller/profile_controller.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:taskappfirebase/app/modules/profile/view/addStudent.dart';
 
 class StudentDetailsUpdation extends StatelessWidget {
   StudentDetailsUpdation({Key? key}) : super(key: key);
@@ -77,7 +77,8 @@ class StudentDetailsUpdation extends StatelessWidget {
                                   icon: Icons.delete,
                                   label: "Delete",
                                   onPressed: (context) {
-                                    studentController.students.removeAt(index);
+                                    studentController.deleteStudent(
+                                      studentController.students[index]['id'],);
                                   },
                                 ),
                               ],
@@ -95,7 +96,8 @@ class StudentDetailsUpdation extends StatelessWidget {
                                   width: 40,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(100),
-                                      color: Color.fromARGB(255, 104, 103, 103).withOpacity(0.1)),
+                                      color: Color.fromARGB(255, 104, 103, 103)
+                                          .withOpacity(0.1)),
                                   child: const Icon(
                                     LineAwesomeIcons.user_1,
                                     color: Color.fromARGB(255, 13, 89, 152),
@@ -103,7 +105,7 @@ class StudentDetailsUpdation extends StatelessWidget {
                                 ),
                                 title: Text(
                                   studentController.students[index]['name'],
-                                  style:const TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -114,7 +116,7 @@ class StudentDetailsUpdation extends StatelessWidget {
                                         studentController.students[index]
                                                 ['email']
                                             .toString(),
-                                        style:const TextStyle(
+                                        style: const TextStyle(
                                             height: 1.7,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 17)),
@@ -125,6 +127,23 @@ class StudentDetailsUpdation extends StatelessWidget {
                                         style: TextStyle(height: 1)),
                                   ],
                                 ),
+                                trailing: IconButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                AddStudentScreen(
+                                              isEditing: true,
+                                              student: studentController
+                                                  .students[index],
+                                            ),
+                                          ));
+                                    },
+                                    icon: const Icon(
+                                      Icons.edit,
+                                      color: Colors.grey,
+                                    )),
                               ),
                             ),
                           ),

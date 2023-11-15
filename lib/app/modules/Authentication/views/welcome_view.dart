@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:taskappfirebase/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:taskappfirebase/app/modules/Authentication/views/login_view.dart';
+import 'package:taskappfirebase/app/modules/profile/controller/profile_controller.dart';
 import 'package:taskappfirebase/app/modules/profile/view/AllStudents.dart';
 import 'package:taskappfirebase/app/modules/profile/view/addStudent.dart';
 import 'package:taskappfirebase/app/modules/profile/view/profile_screen.dart';
@@ -13,6 +15,13 @@ import 'package:taskappfirebase/app/modules/profile/view/students_update.dart';
 class WelcomeScreen extends StatelessWidget {
   String email;
   WelcomeScreen({super.key, required this.email});
+ final StudentController studentController = Get.put(StudentController());
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController locationControllerr = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +101,26 @@ class WelcomeScreen extends StatelessWidget {
 
                  ProfileMenuwidget(title: "dark theme",icon:Icons.dark_mode,onPressed: (){},),
                  ProfileMenuwidget(title: "Add Users",icon: LineAwesomeIcons.wallet,onPressed: (){Get.to(()=> AddStudentScreen());},),
-                 ProfileMenuwidget(title: "All Users",icon: LineAwesomeIcons.user_check,onPressed: (){ Get.to(()=> AllstudentDetails());},),
-                 ProfileMenuwidget(title: "Students Updation",icon: LineAwesomeIcons.info,onPressed: (){ Get.to(()=>StudentDetailsUpdation());},),                 const Divider(color: Colors.grey,),
+                 ProfileMenuwidget(title: "All Users",icon: LineAwesomeIcons.user_check,onPressed: ()async{ 
+                  await FirebaseFirestore.instance.collection("Users").doc().set({
+                                        "name": nameController.text,
+                                        "age": ageController.text,
+                                        "email": emailController.text,
+                                        "phone": phoneController.text,
+                                      });
+                                      studentController.fetchStudents();
+                                      Get.to(() => AllstudentDetails());
+                  },),
+                 ProfileMenuwidget(title: "Students Updation",icon: LineAwesomeIcons.info,onPressed: ()async{ 
+                   await FirebaseFirestore.instance.collection("Users").doc().set({
+                                        "name": nameController.text,
+                                        "age": ageController.text,
+                                        "email": emailController.text,
+                                        "phone": phoneController.text,
+                                      });
+                                      studentController.fetchStudents();
+                                      Get.to(() => AllstudentDetails());
+                  Get.to(()=>StudentDetailsUpdation());},),                 const Divider(color: Colors.grey,),
                  ProfileMenuwidget(title: "Logout",icon: LineAwesomeIcons.alternate_sign_out,onPressed: (){
                    AuthController.instance.logout();
                  },endIcon: false,textcolor: Colors.red,),
