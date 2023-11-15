@@ -5,8 +5,8 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:taskappfirebase/app/modules/profile/controller/profile_controller.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class AllstudentDetails extends StatelessWidget {
-  AllstudentDetails({Key? key}) : super(key: key);
+class StudentDetailsUpdation extends StatelessWidget {
+  StudentDetailsUpdation({Key? key}) : super(key: key);
 
   final StudentController studentController = Get.put(StudentController());
 

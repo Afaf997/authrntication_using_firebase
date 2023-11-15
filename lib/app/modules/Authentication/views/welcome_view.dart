@@ -7,7 +7,7 @@ import 'package:taskappfirebase/app/modules/Authentication/views/login_view.dart
 import 'package:taskappfirebase/app/modules/profile/view/AllStudents.dart';
 import 'package:taskappfirebase/app/modules/profile/view/addStudent.dart';
 import 'package:taskappfirebase/app/modules/profile/view/profile_screen.dart';
-import 'package:taskappfirebase/app/modules/profile/view/update_profile.dart';
+import 'package:taskappfirebase/app/modules/profile/view/students_update.dart';
 
 // ignore: must_be_immutable
 class WelcomeScreen extends StatelessWidget {
@@ -73,7 +73,6 @@ class WelcomeScreen extends StatelessWidget {
                 const Text("coding with me",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                // const Text("superadmin@codingwithme.com"),
                 const SizedBox(height: 20,),
                 SizedBox(width: 200,
                     child: ElevatedButton(
@@ -92,10 +91,9 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(height: 10),
 
                  ProfileMenuwidget(title: "dark theme",icon:Icons.dark_mode,onPressed: (){},),
-
-                 ProfileMenuwidget(title: "Information",icon: LineAwesomeIcons.info,onPressed: (){},),
                  ProfileMenuwidget(title: "Add Users",icon: LineAwesomeIcons.wallet,onPressed: (){Get.to(()=> AddStudentScreen());},),
-                 ProfileMenuwidget(title: "All Users",icon: LineAwesomeIcons.user_check,onPressed: (){ Get.to(()=> AllstudentDetails());},),                 const Divider(color: Colors.grey,),
+                 ProfileMenuwidget(title: "All Users",icon: LineAwesomeIcons.user_check,onPressed: (){ Get.to(()=> AllstudentDetails());},),
+                 ProfileMenuwidget(title: "Students Updation",icon: LineAwesomeIcons.info,onPressed: (){ Get.to(()=>StudentDetailsUpdation());},),                 const Divider(color: Colors.grey,),
                  ProfileMenuwidget(title: "Logout",icon: LineAwesomeIcons.alternate_sign_out,onPressed: (){
                    AuthController.instance.logout();
                  },endIcon: false,textcolor: Colors.red,),
