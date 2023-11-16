@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taskappfirebase/app/modules/Authentication/controllers/details_user.dart';
 import 'package:taskappfirebase/app/modules/Authentication/views/login_view.dart';
 import 'package:taskappfirebase/app/modules/Authentication/views/welcome_view.dart';
 
@@ -17,12 +18,12 @@ class AuthController extends GetxController {
     ever(_user, _initialScreen);
   }
 
-  _initialScreen(User? user) {
-    if (user == null) {
+  _initialScreen(User? userr) {
+    if (userr == null) {
       print("login page");
       Get.offAll(() => const LoginScreen());
     } else {
-      Get.offAll(() => WelcomeScreen(email:user.email!));
+      Get.offAll(() => WelcomeScreen(email:userr.email!));
     }
   }
 

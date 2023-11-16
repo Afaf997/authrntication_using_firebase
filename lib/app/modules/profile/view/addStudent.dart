@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taskappfirebase/app/modules/profile/controller/location.dart';
 import 'package:taskappfirebase/app/modules/profile/controller/profile_controller.dart';
-import 'package:taskappfirebase/app/modules/profile/view/AllStudents.dart';
 
+// ignore: must_be_immutable
 class AddStudentScreen extends StatelessWidget {
   AddStudentScreen({Key? key, this.isEditing = false, this.student})
       : super(key: key);
 
-  final LocationController locationController =
-      Get.put<LocationController>(LocationController());
+  final LocationController locationController =  Get.put<LocationController>(LocationController());
   final StudentController studentController = Get.put(StudentController());
 
   TextEditingController nameController = TextEditingController();
@@ -19,8 +18,8 @@ class AddStudentScreen extends StatelessWidget {
   TextEditingController phoneController = TextEditingController();
   TextEditingController locationControllerr = TextEditingController();
 
-  final bool isEditing;
-  final Map<String, dynamic>? student;
+    final bool isEditing;
+    final Map<String, dynamic>? student;
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +49,8 @@ class AddStudentScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 220, top: 40),
+           const Padding(
+              padding:  EdgeInsets.only(right: 220, top: 40),
               child: SizedBox(
                 width: double.infinity,
                 height: 110,
@@ -85,10 +84,10 @@ class AddStudentScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Column(
                         children: [
-                          Stack(
+                        const  Stack(
                             children: [],
                           ),
-                          SizedBox(
+                         const SizedBox(
                             height: 50,
                           ),
                           Form(
@@ -100,19 +99,19 @@ class AddStudentScreen extends StatelessWidget {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
-                                    label: Text("Full Name"),
+                                    label:const Text("Full Name"),
                                     prefixIcon:
-                                        Icon(Icons.person_outline_rounded),
+                                      const  Icon(Icons.person_outline_rounded),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
-                                      borderSide: BorderSide(
+                                      borderSide:const BorderSide(
                                         width: 2,
                                         color: Colors.black,
                                       ),
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                               const SizedBox(
                                   height: 15,
                                 ),
                                 TextFormField(
@@ -121,18 +120,18 @@ class AddStudentScreen extends StatelessWidget {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
-                                    label: Text("Age"),
-                                    prefixIcon: Icon(Icons.numbers),
+                                    label:const Text("Age"),
+                                    prefixIcon:const Icon(Icons.numbers),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
-                                      borderSide: BorderSide(
+                                      borderSide:const BorderSide(
                                         width: 2,
                                         color: Colors.black,
                                       ),
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                              const  SizedBox(
                                   height: 15,
                                 ),
                                 TextFormField(
@@ -141,18 +140,18 @@ class AddStudentScreen extends StatelessWidget {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
-                                    label: Text("Email"),
-                                    prefixIcon: Icon(Icons.email),
+                                    label:const Text("Email"),
+                                    prefixIcon:const Icon(Icons.email),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
-                                      borderSide: BorderSide(
+                                      borderSide:const BorderSide(
                                         width: 2,
                                         color: Colors.black,
                                       ),
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                               const SizedBox(
                                   height: 15,
                                 ),
                                 TextFormField(
@@ -161,18 +160,18 @@ class AddStudentScreen extends StatelessWidget {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
-                                    label: Text("Phone Number"),
-                                    prefixIcon: Icon(Icons.phone),
+                                    label:const Text("Phone Number"),
+                                    prefixIcon:const Icon(Icons.phone),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
-                                      borderSide: BorderSide(
+                                      borderSide:const BorderSide(
                                         width: 2,
                                         color: Colors.black,
                                       ),
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                              const  SizedBox(
                                   height: 20,
                                 ),
                                 TextFormField(
@@ -181,25 +180,25 @@ class AddStudentScreen extends StatelessWidget {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
-                                    label: Text("location"),
-                                    prefixIcon: Icon(Icons.location_on),
+                                    label:const Text("location"),
+                                    prefixIcon:const Icon(Icons.location_on),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
-                                      borderSide: BorderSide(
+                                      borderSide:const BorderSide(
                                         width: 2,
                                         color: Colors.black,
                                       ),
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                              const  SizedBox(
                                   height: 20,
                                 ),
                                 InkWell(
                                   onTap: () async {
                                     locationController.getCurrentPosition();
                                   },
-                                  child: SizedBox(
+                                  child:const SizedBox(
                                     width: double.infinity,
                                     height: 50,
                                     child: Image(
@@ -208,12 +207,12 @@ class AddStudentScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                               const SizedBox(
                                   height: 20,
                                 ),
                                 Obx(
                                   () => controller.isLoading.value
-                                      ? CircularProgressIndicator()
+                                      ?const CircularProgressIndicator()
                                       : SizedBox(
                                           height: 40,
                                           width: double.infinity,
@@ -245,11 +244,11 @@ class AddStudentScreen extends StatelessWidget {
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor: Colors.black,
                                               side: BorderSide.none,
-                                              shape: StadiumBorder(),
+                                              shape:const StadiumBorder(),
                                             ),
                                             child: Text(
                                               isEditing ? "Update" : "Submit",
-                                              style: TextStyle(
+                                              style:const TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 18,
                                               ),
@@ -257,7 +256,7 @@ class AddStudentScreen extends StatelessWidget {
                                           ),
                                         ),
                                 ),
-                                SizedBox(
+                              const  SizedBox(
                                   height: 20,
                                 ),
                               ],

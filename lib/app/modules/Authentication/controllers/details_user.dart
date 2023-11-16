@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-class StudentController extends GetxController {
-  var students = <Map<String, dynamic>>[].obs;
+class UserDeatailsController extends GetxController {
+  var users = <Map<String, dynamic>>[].obs;
   var isLoading = false.obs;
 
-  void fetchStudents() async {
+  void fetchUserDetails() async {
     try {
       isLoading.value = true;
-      var snapshot = await FirebaseFirestore.instance.collection('Users').get();
-      students.value = snapshot.docs.map((doc) {
+      var snapshot = await FirebaseFirestore.instance.collection('User_Details').get();
+      users.value = snapshot.docs.map((doc) {
         var data = doc.data() as Map<String, dynamic>;
-        data['id'] = doc.id; // Include the document ID
+        data['id'] = doc.id; 
         return data;
       }).toList();
     } catch (e) {
@@ -24,8 +24,8 @@ class StudentController extends GetxController {
   Future<void> deleteStudent(String studentId) async {
     try {
       isLoading.value = true;
-      await FirebaseFirestore.instance.collection('Users').doc(studentId).delete();
-      fetchStudents(); // Refresh the list after deletion
+      await FirebaseFirestore.instance.collection('User_Details').doc(studentId).delete();
+      fetchUserDetails(); 
     } catch (e) {
       print('Error deleting student: $e');
     } finally {
@@ -36,8 +36,8 @@ class StudentController extends GetxController {
   Future<void> updateStudent(String studentId, Map<String, dynamic> updatedData) async {
     try {
       isLoading.value = true;
-      await FirebaseFirestore.instance.collection('Users').doc(studentId).update(updatedData);
-      fetchStudents(); // Refresh the list after update
+      await FirebaseFirestore.instance.collection('User_Details').doc(studentId).update(updatedData);
+      fetchUserDetails();
     } catch (e) {
       print('Error updating student: $e');
     } finally {

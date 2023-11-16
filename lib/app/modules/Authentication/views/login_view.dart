@@ -120,7 +120,7 @@ class LoginScreen extends GetView<AuthController> {
           children:  [
             TextSpan(text: "  Create",
           style:const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),
-          recognizer: TapGestureRecognizer()..onTap=()=>Get.to(()=>const SignUpScreen()))
+          recognizer: TapGestureRecognizer()..onTap=()=>Get.to(()=> SignUpScreen()))
           ]
           )),
         ],),
