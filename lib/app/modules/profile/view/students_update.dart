@@ -8,7 +8,8 @@ import 'package:taskappfirebase/app/modules/profile/view/addStudent.dart';
 class StudentDetailsUpdation extends StatelessWidget {
   StudentDetailsUpdation({Key? key}) : super(key: key);
 
-  final StudentController studentController = Get.put(StudentController());
+// final StudentController studentController = Get.find<StudentController>();
+final  StudentController studentController =Get.put(StudentController());
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +17,13 @@ class StudentDetailsUpdation extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
+          icon: const Icon(Icons.arrow_back,color: Colors.black,),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white,   
         title: const Text(
           " Users",
           style: TextStyle(
@@ -40,18 +38,14 @@ class StudentDetailsUpdation extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    "assets/img/sn.jpg",
-                    width: 100,
+                  child: Image.asset("assets/img/sn.jpg",width: 100,
                   ),
                 ),
                 const SizedBox(height: 10),
                 const Column(
                   children: [
-                    Text(
-                      "Get On Board!",
-                      style:
-                          TextStyle(fontSize: 26, fontWeight: FontWeight.w900),
+                    Text("Get On Board!",style:
+                    TextStyle(fontSize: 26, fontWeight: FontWeight.w900),
                     ),
                   ],
                 ),
@@ -61,7 +55,7 @@ class StudentDetailsUpdation extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding:const EdgeInsets.all(20),
                 child: Obx(
                   () => Column(
                     children: List.generate(
@@ -78,7 +72,8 @@ class StudentDetailsUpdation extends StatelessWidget {
                                   label: "Delete",
                                   onPressed: (context) {
                                     studentController.deleteStudent(
-                                      studentController.students[index]['id'],);
+                                      studentController.students[index]['id'],
+                                    );
                                   },
                                 ),
                               ],
@@ -96,7 +91,7 @@ class StudentDetailsUpdation extends StatelessWidget {
                                   width: 40,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(100),
-                                      color: Color.fromARGB(255, 104, 103, 103)
+                                      color:const Color.fromARGB(255, 104, 103, 103)
                                           .withOpacity(0.1)),
                                   child: const Icon(
                                     LineAwesomeIcons.user_1,
@@ -112,41 +107,23 @@ class StudentDetailsUpdation extends StatelessWidget {
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                        studentController.students[index]
-                                                ['email']
-                                            .toString(),
+                                    Text( studentController.students[index]['email'].toString(),
                                         style: const TextStyle(
                                             height: 1.7,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 17)),
-                                    Text(
-                                        studentController.students[index]
-                                                ['phone']
-                                            .toString(),
-                                        style: TextStyle(height: 1)),
+                                    Text(studentController.students[index]['phone'].toString(),
+                                        style:const TextStyle(height: 1)),
                                   ],
                                 ),
                                 trailing: IconButton(
                                     onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                AddStudentScreen(
-                                              isEditing: true,
-                                              student: studentController
-                                                  .students[index],
+                                      Navigator.push(context,MaterialPageRoute(  builder: (context) =>AddStudentScreen(isEditing: true,
+                                      student: studentController.students[index],
                                             ),
                                           ));
-                                    },
-                                    icon: const Icon(
-                                      Icons.edit,
-                                      color: Colors.grey,
-                                    )),
-                              ),
-                            ),
-                          ),
+                                    },          icon: const Icon( Icons.edit,  color: Colors.grey,)),
+                              ),),),
                           const SizedBox(height: 14),
                         ],
                       ),

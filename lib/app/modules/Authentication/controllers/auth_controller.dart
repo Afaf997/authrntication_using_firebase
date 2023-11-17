@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,22 +28,31 @@ class AuthController extends GetxController {
     }
   }
 
-  // Registration
-  void register(String email, String password) async {
-    try {
-      await auth.createUserWithEmailAndPassword(email: email, password: password);
-    } catch (e) {
-      print("Error during registration: $e");
-      Get.snackbar(
-        "Account Creation Failed",
-        e.toString(),
-        backgroundColor: Colors.redAccent,
-        snackPosition: SnackPosition.BOTTOM,
-        titleText: const Text("Account creation failed", style: TextStyle(color: Colors.white)),
-        messageText: const Text("Please check your email and password and try again.", style: TextStyle(color: Colors.white)),
-      );
-    }
+  void register(String email, String password, String name, int phone) async {
+  try {
+    await auth.createUserWithEmailAndPassword(email: email, password: password);
+    User? user = auth.currentUser;
+    await FirebaseFirestore.instance.collection("User_Details").add({
+      "name": name,
+      "phone": phone, 
+      "email": email,
+      "createdAt": DateTime.now(),
+      "userId": user!.uid, 
+    });
+
+    Get.offAll(() => WelcomeScreen(email: email));
+  } catch (e) {
+    print("Error during registration: $e");
+    Get.snackbar(
+      "Account Creation Failed",
+      e.toString(),
+      backgroundColor: Colors.redAccent,
+      snackPosition: SnackPosition.BOTTOM,
+      titleText: const Text("Account creation failed", style: TextStyle(color: Colors.white)),
+      messageText: const Text("Please check your email and password and try again.", style: TextStyle(color: Colors.white)),
+    );
   }
+}
 
 //login
 

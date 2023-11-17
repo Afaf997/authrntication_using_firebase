@@ -1,25 +1,49 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class UserDeatailsController extends GetxController {
   var users = <Map<String, dynamic>>[].obs;
   var isLoading = false.obs;
 
+     User? currentUser=FirebaseAuth.instance.currentUser;
+
   void fetchUserDetails() async {
-    try {
-      isLoading.value = true;
-      var snapshot = await FirebaseFirestore.instance.collection('User_Details').get();
-      users.value = snapshot.docs.map((doc) {
-        var data = doc.data() as Map<String, dynamic>;
-        data['id'] = doc.id; 
-        return data;
-      }).toList();
-    } catch (e) {
-      print('Error fetching students: $e');
-    } finally {
-      isLoading.value = false;
-    }
+  try {
+    isLoading.value = true;
+
+    var snapshot = await FirebaseFirestore.instance
+        .collection('User_Details')
+        .where('userId', isEqualTo: currentUser!.uid)
+        .get();
+    
+    users.value = snapshot.docs.map((doc) {
+      var data = doc.data() as Map<String, dynamic>;
+      data['id'] = doc.id; 
+      return data;
+    }).toList();
+  } catch (e) {
+    print('Error fetching user details: $e');
+  } finally {
+    isLoading.value = false;
   }
+}
+
+  // void fetchUserDetails() async {
+  //   try {
+  //     isLoading.value = true;
+  //     var snapshot = await FirebaseFirestore.instance.collection('User_Details').get();
+  //     users.value = snapshot.docs.map((doc) {
+  //       var data = doc.data() as Map<String, dynamic>;
+  //       data['id'] = doc.id; 
+  //       return data;
+  //     }).toList();
+  //   } catch (e) {
+  //     print('Error fetching students: $e');
+  //   } finally {
+  //     isLoading.value = false;
+  //   }
+  // }
 
   Future<void> deleteStudent(String studentId) async {
     try {
@@ -30,9 +54,7 @@ class UserDeatailsController extends GetxController {
       print('Error deleting student: $e');
     } finally {
       isLoading.value = false;
-    }
-  }
-
+    }}
   Future<void> updateStudent(String studentId, Map<String, dynamic> updatedData) async {
     try {
       isLoading.value = true;

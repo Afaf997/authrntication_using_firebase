@@ -9,10 +9,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class AllstudentDetails extends StatelessWidget {
   AllstudentDetails({Key? key}) : super(key: key);
 
-  final StudentController studentController = Get.put(StudentController());
-
+  // final StudentController studentController = Get.find<StudentController>();
+  final  StudentController studentController =Get.put(StudentController());
   @override
   Widget build(BuildContext context) {
+    double wt= MediaQuery.of(context).size.width;
+    double ht = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -39,13 +41,14 @@ class AllstudentDetails extends StatelessWidget {
             padding: const EdgeInsets.only(right: 220, top: 10),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    "assets/img/sn.jpg",
-                    width: 100,
-                  ),
-                ),
+                    Container(
+            width: wt,
+            height:ht*0.2,
+            decoration: const BoxDecoration(
+              image:DecorationImage(image:AssetImage("assets/img/sn2.jpg"),
+              fit: BoxFit.cover)
+            ),
+          ),
                 const SizedBox(height: 10),
                 const Column(
                   children: [
