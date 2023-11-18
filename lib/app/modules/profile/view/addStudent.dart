@@ -126,6 +126,13 @@ class AddStudentScreen extends StatelessWidget {
                                           width: double.infinity,
                                           child: ElevatedButton(
                                             onPressed: () async {
+                                               if (nameController.text.isEmpty ||
+                                                   ageController.text.isEmpty ||
+                                                       emailController.text.isEmpty ||
+                                                       phoneController.text.isEmpty) {
+             
+                                                     return;
+              }
                                               if (isEditing) {
                                                 await studentController
                                                     .updateStudent(

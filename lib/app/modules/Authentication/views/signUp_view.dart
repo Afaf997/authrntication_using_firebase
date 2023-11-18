@@ -6,10 +6,12 @@ import 'package:get/get.dart';
 import 'package:taskappfirebase/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:taskappfirebase/app/modules/Authentication/controllers/details_user.dart';
 import 'package:taskappfirebase/app/modules/Authentication/functions/signup_textfilds.dart';
+import 'package:taskappfirebase/app/modules/Authentication/views/login_view.dart';
 // ignore: must_be_immutable
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key, this.isEditing = false, this.student}): super(key: key);
-  final UserDeatailsController userController = Get.find<UserDeatailsController>();
+  // final UserDeatailsController userController = Get.find<UserDeatailsController>();
+  final  UserDeatailsController userController  =Get.put(UserDeatailsController());
 
   String imageUrl = '';
   String selectFileName = '';
@@ -50,14 +52,6 @@ class SignUpScreen extends StatelessWidget {
                    Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
-    const Text(
-      "Hello",
-      style: TextStyle(fontSize: 67, fontWeight: FontWeight.bold),
-    ),
-    Text(
-      "Sign up for a new account",
-      style: TextStyle(fontSize: 20, color: Colors.grey[500]),
-    ),
     const SizedBox(height: 50),
     buildRegistrationInputContainer(
       controller: usernameController,
@@ -103,6 +97,7 @@ class SignUpScreen extends StatelessWidget {
                   }
                   userController.fetchUserDetails();
                    FocusScope.of(context).unfocus();
+                  //  Get.to(LoginScreen());
                   AuthController.instance.register(emailController.text,passwordController.text,usernameController.text,int.parse(phonenumberController.text)); 
                 },
                 child: Container(

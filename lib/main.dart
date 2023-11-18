@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:taskappfirebase/app/modules/Authentication/controllers/auth_controller.dart';
+import 'package:taskappfirebase/app/modules/Authentication/controllers/theme.dart';
 import 'firebase_options.dart';
 import 'package:get/get.dart';
 import 'app/routes/app_pages.dart';

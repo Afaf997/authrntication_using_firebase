@@ -20,7 +20,7 @@ class WelcomeScreen extends StatelessWidget {
 
   WelcomeScreen({super.key, required this.email});
  final  StudentController studentController =Get.put(StudentController());
- final  UserDeatailsController userController =Get.put(UserDeatailsController());
+//  final  UserDeatailsController userController =Get.put(UserDeatailsController());
   // final StudentController studentController = Get.find<StudentController>();
   // final UserDeatailsController userController = Get.find<UserDeatailsController>();
   final ImagePickerService imagePickerService = ImagePickerService(); 

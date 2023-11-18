@@ -2,8 +2,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taskappfirebase/app/modules/Authentication/functions/forgotepassword.dart';
 import 'package:taskappfirebase/app/modules/Authentication/functions/login_textfield.dart';
 import 'package:taskappfirebase/app/modules/Authentication/views/forgot.dart';
+import 'package:taskappfirebase/app/modules/Authentication/views/otpscreen.dart';
 import 'package:taskappfirebase/app/modules/Authentication/views/signUp_view.dart';
 import '../controllers/auth_controller.dart';
 
@@ -55,7 +57,31 @@ class LoginScreen extends GetView<AuthController> {
               children: [
                  GestureDetector(
                   child: Text("Forgot your account?",style: TextStyle(fontSize: 18,color: Colors.grey[500]),),
-                  onTap: ()=> Get.to(ForgotPssWord()),),
+                  onTap: (){
+                     showModalBottomSheet(context: context,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                   builder: (context)=>Container(
+                   padding:const EdgeInsets.all(20),
+                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                     const Text("Make Selection",style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),),
+                     const Text("select one of the options given below to reset yours password",style: TextStyle(fontSize: 15),),
+                     const SizedBox( height: 30,),
+                     buildGestureDetector(
+                         title: "E-mail",
+                          subtitle: "Reset via Mail Verification",
+                          icon: Icons.mail_outline_rounded,
+                           onTap: () {
+                            Get.to(ForgotPssWord());
+                          },                          ),                          SizedBox(height: 20),                          buildGestureDetector(
+                           title: "Phone No",
+                          subtitle: "Reset via phone Verification",
+                          icon: Icons.mobile_friendly_rounded,
+                          onTap: () {Get.to(const OTPscreen());},),
+                    ],
+                   ),
+                   ));}),
               ],)
              ],
           ),),

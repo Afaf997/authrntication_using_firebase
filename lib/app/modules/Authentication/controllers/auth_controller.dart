@@ -76,4 +76,32 @@ class AuthController extends GetxController {
    void logout()async{
     await auth.signOut();
        }
+
+        void sendPasswordResetEmail(String email) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email).then((value) {
+        Get.offAll(LoginScreen());
+        Get.snackbar(
+          "Password Reset",
+          "A password reset email has been sent to $email",
+          backgroundColor: Colors.green,
+          snackPosition: SnackPosition.BOTTOM,
+          titleText: const Text("Success", style: TextStyle(color: Colors.white)),
+          messageText: const Text("Please check your email to reset your password.", style: TextStyle(color: Colors.white)),
+        );
+      }).catchError((onError) =>
+          Get.snackbar("Error in Email Reset", onError.message));
+    } catch (e) {
+      print("Error sending password reset email: $e");
+      Get.snackbar(
+        "Error",
+        "Failed to send password reset email. Please try again.",
+        backgroundColor: Colors.redAccent,
+        snackPosition: SnackPosition.BOTTOM,
+        titleText: const Text("Error", style: TextStyle(color: Colors.white)),
+        messageText: const Text("Please check your email and try again.", style: TextStyle(color: Colors.white)),
+      );
+    }
+  }
 }
+
