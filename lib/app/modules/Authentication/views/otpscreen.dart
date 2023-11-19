@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 class OTPscreen extends StatelessWidget {
@@ -14,10 +13,10 @@ class OTPscreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("CODE",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
-            Text("verification",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+           const Text("CODE",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
+           const Text("verification",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
             const SizedBox(height: 40,),
-            Text("Enter the verification code sent at support@codingwith.com",textAlign:TextAlign.center,),
+           const Text("Enter the verification code sent at support@codingwith.com",textAlign:TextAlign.center,),
            const  SizedBox(height:  20,),
            OtpTextField(
             numberOfFields: 6,

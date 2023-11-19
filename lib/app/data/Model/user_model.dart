@@ -7,8 +7,8 @@ class UserModel {
   final int phonenumber;
   final String password;
 
-  UserModel(
-      {this.id,
+  UserModel({
+      this.id,
       required this.fullname,
       required this.password,
       required this.email,

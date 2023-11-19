@@ -1,4 +1,3 @@
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,11 +73,7 @@ class LoginScreen extends GetView<AuthController> {
                           icon: Icons.mail_outline_rounded,
                            onTap: () {
                             Get.to(ForgotPssWord());
-                          },                          ),                          SizedBox(height: 20),                          buildGestureDetector(
-                           title: "Phone No",
-                          subtitle: "Reset via phone Verification",
-                          icon: Icons.mobile_friendly_rounded,
-                          onTap: () {Get.to(const OTPscreen());},),
+                          },),SizedBox(height: 20),
                     ],
                    ),
                    ));}),

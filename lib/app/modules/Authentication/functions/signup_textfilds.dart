@@ -5,6 +5,7 @@ Container buildRegistrationInputContainer({
   required String hintText,
   required IconData prefixIcon,
   bool obscureText = false,
+   String? Function(String?)? validator,
 }) {
   return Container(
     decoration: BoxDecoration(
@@ -37,6 +38,7 @@ Container buildRegistrationInputContainer({
           borderRadius: BorderRadius.circular(30),
         ),
       ),
+      validator: validator,
     ),
   );
 }

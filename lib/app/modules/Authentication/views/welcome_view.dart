@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class WelcomeScreen extends StatelessWidget {
 
   WelcomeScreen({super.key, required this.email});
  final  StudentController studentController =Get.put(StudentController());
-//  final  UserDeatailsController userController =Get.put(UserDeatailsController());
+ final  UserDeatailsController userController =Get.put(UserDeatailsController());
   // final StudentController studentController = Get.find<StudentController>();
   // final UserDeatailsController userController = Get.find<UserDeatailsController>();
   final ImagePickerService imagePickerService = ImagePickerService(); 
@@ -129,29 +128,23 @@ class WelcomeScreen extends StatelessWidget {
                  const Divider(),
                  const SizedBox(height: 10),
                   ProfileMenuwidget(
-                    title: "Toggle Dark Theme",
+                    title: " Dark Theme",
                     icon: Icons.dark_mode,
                     onPressed: () {
                       // AuthController.instance.toggleDarkTheme();
                     },
                   ),
                   ProfileMenuwidget(
-                    title: "Add Users",
+                    title: "Add Students",
                     icon: LineAwesomeIcons.wallet,
                     onPressed: () {
                       Get.to(() => AddStudentScreen());
                     },
                   ),
                   ProfileMenuwidget(
-                    title: "All Users",
+                    title: "All Students",
                     icon: LineAwesomeIcons.user_check,
                     onPressed: () async {
-                      await FirebaseFirestore.instance.collection("Users").doc().set({
-                        "name": nameController.text,
-                        "age": ageController.text,
-                        "email": emailController.text,
-                        "phone": phoneController.text,
-                      });
                       studentController.fetchStudents();
                       Get.to(() => AllstudentDetails());
                     },
@@ -160,14 +153,6 @@ class WelcomeScreen extends StatelessWidget {
                     title: "Students Updation",
                     icon: LineAwesomeIcons.info,
                     onPressed: () async {
-                      await FirebaseFirestore.instance.collection("Users").doc().set({
-                        "name": nameController.text,
-                        "age": ageController.text,
-                        "email": emailController.text,
-                        "phone": phoneController.text,
-                        "createdAt": DateTime.now(),
-                        "userId": currentUser!.uid,
-                      });
                       studentController.fetchStudents();
                       Get.to(() => StudentDetailsUpdation());
                     },

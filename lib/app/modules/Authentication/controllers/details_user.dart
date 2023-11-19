@@ -28,22 +28,6 @@ class UserDeatailsController extends GetxController {
   }
 }
 
-  // void fetchUserDetails() async {
-  //   try {
-  //     isLoading.value = true;
-  //     var snapshot = await FirebaseFirestore.instance.collection('User_Details').get();
-  //     users.value = snapshot.docs.map((doc) {
-  //       var data = doc.data() as Map<String, dynamic>;
-  //       data['id'] = doc.id; 
-  //       return data;
-  //     }).toList();
-  //   } catch (e) {
-  //     print('Error fetching students: $e');
-  //   } finally {
-  //     isLoading.value = false;
-  //   }
-  // }
-
   Future<void> deleteStudent(String studentId) async {
     try {
       isLoading.value = true;
