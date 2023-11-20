@@ -19,6 +19,9 @@ void main() async{
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+       theme: ThemeData.light(),
+  darkTheme: ThemeData.dark(),
+  themeMode: ThemeMode.system,
     ),
   );
 }

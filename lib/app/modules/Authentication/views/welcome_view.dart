@@ -48,32 +48,32 @@ class WelcomeScreen extends StatelessWidget {
             ],
           ),
 const  SizedBox(height: 30, ),
-SingleChildScrollView(
-  child: Container(
-    padding: const EdgeInsets.all(10),
-    child: Column(
-      children: [
-        Stack(
-          children: [
-            GestureDetector(
-              onTap: () async {
-                imagePickerService.pickAndUploadImage(email);
-              },
-              child: Stack(
+          SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
                 children: [
-                  SizedBox( width: 90, height: 90,
-                    child: StreamBuilder<QuerySnapshot>(
-                      stream: FirebaseFirestore.instance
-                          .collection('User_Details')
-                          .where('email', isEqualTo: email)
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return const CircleAvatar(radius: 45,backgroundColor: Colors.grey,
-                          );
-                        }
-                        var user =snapshot.data?.docs.isNotEmpty ?? false
-                                ? snapshot.data!.docs[0].data(): null;
+                  Stack(
+                    children: [
+                      GestureDetector(
+                        onTap: () async {
+                          imagePickerService.pickAndUploadImage(email);
+                        },
+                        child: Stack(
+                          children: [
+                            SizedBox( width: 90, height: 90,
+                              child: StreamBuilder<QuerySnapshot>(
+                                stream: FirebaseFirestore.instance
+                                    .collection('User_Details')
+                                    .where('email', isEqualTo: email)
+                                    .snapshots(),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return const CircleAvatar(radius: 45,backgroundColor: Colors.grey,
+                                    );
+                                  }
+                                  var user =snapshot.data?.docs.isNotEmpty ?? false
+                                          ? snapshot.data!.docs[0].data(): null;
                                   var imageUrl =(user as Map<String, dynamic>?)?['image'];
                                   return ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
