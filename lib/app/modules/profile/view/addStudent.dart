@@ -9,11 +9,9 @@ import 'package:taskappfirebase/app/modules/profile/functions/text_field.dart';
 // ignore: must_be_immutable
 class AddStudentScreen extends StatelessWidget {
   AddStudentScreen({super.key, this.isEditing = false, this.student});
-
   // final LocationController locationController=Get.find<LocationController>();
    final  StudentController studentController =Get.put(StudentController());
   final  LocationController locationController =Get.put(LocationController());
-   
   // final StudentController studentController = Get.find<StudentController>();
   User? currentUser = FirebaseAuth.instance.currentUser;
 
@@ -28,6 +26,13 @@ class AddStudentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     if (isEditing && student != null) {
+      nameController.text = student!['name'] ?? '';
+      ageController.text = student!['age'] ?? '';
+      emailController.text = student!['email'] ?? '';
+      phoneController.text = student!['phone'] ?? '';
+      locationControllerr.text = student!['location'] ?? '';
+    }
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -63,8 +68,7 @@ class AddStudentScreen extends StatelessWidget {
               ],
             ),
             GetBuilder<LocationController>(builder: (controller) {
-              locationControllerr.text =
-                  locationController.currentAddress.toString();
+              locationControllerr.text =locationController.currentAddress.toString();
               return Form(
                 child: SingleChildScrollView(
                   child: Center(
@@ -141,6 +145,7 @@ class AddStudentScreen extends StatelessWidget {
                                                   "age": ageController.text,
                                                   "email": emailController.text,
                                                   "phone": phoneController.text,
+                                                  "location": locationController.currentAddress.value,
                                                 });
                                               } else {
                                                 await FirebaseFirestore.instance
@@ -152,6 +157,7 @@ class AddStudentScreen extends StatelessWidget {
                                                   "age": ageController.text,
                                                   "email": emailController.text,
                                                   "phone": phoneController.text,
+                                                  "location": locationController.currentAddress.value, 
                                                 });
                                               }
                                               studentController.fetchStudents();

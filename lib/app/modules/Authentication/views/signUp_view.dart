@@ -11,7 +11,6 @@ class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key, this.isEditing = false, this.student}): super(key: key);
   // final UserDeatailsController userController = Get.find<UserDeatailsController>();
   final  UserDeatailsController userController  =Get.put(UserDeatailsController());
-
   String imageUrl = '';
   String selectFileName = '';
   final bool isEditing;
@@ -24,10 +23,10 @@ class SignUpScreen extends StatelessWidget {
     var usernameController = TextEditingController();
     var phonenumberController = TextEditingController();
 
-    if (isEditing && student != null) {
-      usernameController.text = student!['name'];
-      phonenumberController.text = student!['phone'];
-    }
+    // if (isEditing && student != null) {
+    //   usernameController.text = student!['name'];
+    //   phonenumberController.text = student!['phone'];
+    // }
     double wt = MediaQuery.of(context).size.width;
     double ht = MediaQuery.of(context).size.height;
     return SafeArea(
@@ -46,9 +45,6 @@ class SignUpScreen extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 20, right: 20, top: 10),
                 width: wt,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                   Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     const SizedBox(height: 50),
@@ -77,7 +73,7 @@ class SignUpScreen extends StatelessWidget {
       prefixIcon: Icons.phone,
     ),
   ],
-)],),),
+),),
               const SizedBox(height: 70),
   GestureDetector(
                 onTap: () async {
@@ -95,7 +91,7 @@ class SignUpScreen extends StatelessWidget {
                     });
                   }
                   userController.fetchUserDetails();
-                  //  FocusScope.of(context).unfocus();
+                   FocusScope.of(context).unfocus();
                   //  Get.to(LoginScreen());
                   AuthController.instance.register(emailController.text,passwordController.text,usernameController.text,int.parse(phonenumberController.text)); 
                 },
@@ -122,7 +118,7 @@ class SignUpScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.grey[500], fontSize: 18),
               )),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               RichText(
                   text: TextSpan(

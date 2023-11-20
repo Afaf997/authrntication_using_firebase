@@ -47,44 +47,37 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ],
           ),
-        const  SizedBox(height: 30, ),
-          SingleChildScrollView(
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              child: Column(
+const  SizedBox(height: 30, ),
+SingleChildScrollView(
+  child: Container(
+    padding: const EdgeInsets.all(10),
+    child: Column(
+      children: [
+        Stack(
+          children: [
+            GestureDetector(
+              onTap: () async {
+                imagePickerService.pickAndUploadImage(email);
+              },
+              child: Stack(
                 children: [
-                  Stack(
-                    children: [
-                      GestureDetector(
-                        onTap: () async {
-                          imagePickerService.pickAndUploadImage(email);
-                        },
-                        child: Stack(
-                          children: [
-                            SizedBox( width: 90, height: 90,
-                              child: StreamBuilder<QuerySnapshot>(
-                                stream: FirebaseFirestore.instance
-                                    .collection('User_Details')
-                                    .where('email', isEqualTo: email)
-                                    .snapshots(),
-                                builder: (context, snapshot) {
-                                  if (!snapshot.hasData) {
-                                    return const CircleAvatar(radius: 45,backgroundColor: Colors.grey,
-                                    );
-                                  }
-                                  var user =
-                                      snapshot.data?.docs.isNotEmpty ?? false
-                                          ? snapshot.data!.docs[0].data()
-                                          : null;
-                                  var imageUrl =
-                                      (user as Map<String, dynamic>?)?['image'];
-
+                  SizedBox( width: 90, height: 90,
+                    child: StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('User_Details')
+                          .where('email', isEqualTo: email)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return const CircleAvatar(radius: 45,backgroundColor: Colors.grey,
+                          );
+                        }
+                        var user =snapshot.data?.docs.isNotEmpty ?? false
+                                ? snapshot.data!.docs[0].data(): null;
+                                  var imageUrl =(user as Map<String, dynamic>?)?['image'];
                                   return ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
-                                    child: imageUrl != null
-                                        ? Image.network(
-                                            imageUrl,
-                                            width: 90,
+                                    child: imageUrl != null? Image.network(imageUrl,width: 90,
                                             height: 90,
                                             fit: BoxFit.cover,
                                           )
@@ -97,10 +90,7 @@ class WelcomeScreen extends StatelessWidget {
                               ),
                             ),
                             Positioned(bottom: 0,right: 0,
-                              child: Container(
-                                width: 35,
-                                height: 35,
-                                decoration: BoxDecoration(
+                              child: Container(width: 35,decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
                                   color: const Color.fromARGB(255, 245, 222, 8),
                                 ),

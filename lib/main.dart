@@ -12,7 +12,7 @@ void main() async{
     options: DefaultFirebaseOptions.currentPlatform,
     
 );
-await Firebase.initializeApp().then((value) => Get.put(AuthController()));
+// await Firebase.initializeApp().then((value) => Get.put(AuthController()));
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,

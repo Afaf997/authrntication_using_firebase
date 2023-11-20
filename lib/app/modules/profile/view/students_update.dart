@@ -118,7 +118,8 @@ final  StudentController studentController =Get.put(StudentController());
                                 ),
                                 trailing: IconButton(
                                     onPressed: () {
-                                      Navigator.push(context,MaterialPageRoute(  builder: (context) =>AddStudentScreen(isEditing: true,
+                                      Navigator.push(context,MaterialPageRoute(  builder: (context) =>AddStudentScreen(
+                                        isEditing: true,
                                       student: studentController.students[index],
                                             ),
                                           ));

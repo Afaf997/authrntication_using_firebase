@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:taskappfirebase/app/modules/Authentication/functions/forgotepassword.dart';
 import 'package:taskappfirebase/app/modules/Authentication/functions/login_textfield.dart';
 import 'package:taskappfirebase/app/modules/Authentication/views/forgot.dart';
-import 'package:taskappfirebase/app/modules/Authentication/views/otpscreen.dart';
 import 'package:taskappfirebase/app/modules/Authentication/views/signUp_view.dart';
 import '../controllers/auth_controller.dart';
 

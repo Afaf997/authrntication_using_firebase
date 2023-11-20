@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class StudentController extends GetxController {
@@ -6,20 +7,28 @@ class StudentController extends GetxController {
   var isLoading = false.obs;
 
   void fetchStudents() async {
-    try {
-      isLoading.value = true;
-      var snapshot = await FirebaseFirestore.instance.collection('Users').get();
+  try {
+    isLoading.value = true;
+    User? currentUser = FirebaseAuth.instance.currentUser;
+
+    if (currentUser != null) {
+      var snapshot = await FirebaseFirestore.instance
+          .collection('Users')
+          .where('userId', isEqualTo: currentUser.uid)
+          .get();
+
       students.value = snapshot.docs.map((doc) {
         var data = doc.data() as Map<String, dynamic>;
-        data['id'] = doc.id; // Include the document ID
+        data['id'] = doc.id;
         return data;
       }).toList();
-    } catch (e) {
-      print('Error fetching students: $e');
-    } finally {
-      isLoading.value = false;
     }
+  } catch (e) {
+    // ... (remaining code)
+  } finally {
+    isLoading.value = false;
   }
+}
 
   Future<void> deleteStudent(String studentId) async {
     try {
