@@ -22,11 +22,11 @@ class SignUpScreen extends StatelessWidget {
     var passwordController = TextEditingController();
     var usernameController = TextEditingController();
     var phonenumberController = TextEditingController();
+        if (isEditing && student != null) {
+      usernameController.text = student!['name'];
+      phonenumberController.text = student!['phone'];
+    }
 
-    // if (isEditing && student != null) {
-    //   usernameController.text = student!['name'];
-    //   phonenumberController.text = student!['phone'];
-    // }
     double wt = MediaQuery.of(context).size.width;
     double ht = MediaQuery.of(context).size.height;
     return SafeArea(
